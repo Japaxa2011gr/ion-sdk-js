@@ -70,7 +70,7 @@ export class LocalStream extends Stream {
   static async getDisplayMedia(
     options: StreamOptions = {
       codec: 'VP8',
-      resolution: 'hd',
+      resolution: 'vga',
       audio: false,
       video: true,
     },
@@ -78,6 +78,8 @@ export class LocalStream extends Stream {
     // @ts-ignore
     const stream = await navigator.mediaDevices.getDisplayMedia({
       video: true,
+      width: { max: 640 },
+      height: { max: 360 }
     });
 
     return new LocalStream(stream, options);
